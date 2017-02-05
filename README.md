@@ -1,2 +1,2 @@
-# CVT-analysis
-Matlab script to classify CVT curves
+# CVT
+All code regarding loading and analyzing data for CVT
