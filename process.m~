@@ -11,15 +11,15 @@ for i = 2:num_files
     primaryRPM_array = [primaryRPM_array init(1, :)];
 end
 
-% x = primaryRPM_array(4).time;
-% y = primaryRPM_array(4).signal;
-% yy = smooth(y, 200, 'moving');
-% dyy = smooth(diff(yy)./diff(x), 200, 'moving');
-% 
-% figure;
-% plot(x, yy);
-% hold on;
-% plot(x(2:end), dyy);
+x = primaryRPM_array(4).time;
+y = primaryRPM_array(4).signal;
+yy = smooth(y, 200, 'moving');
+dyy = smooth(diff(yy)./diff(x), 200, 'moving');
+
+figure;
+plot(x, yy);
+hold on;
+plot(x(2:end), dyy);
 
 
 for i = 1:31
@@ -57,13 +57,7 @@ for i = 1:31
     primaryRPM_array(i).active_time = length / one_sec;
     
     % attempting to find pre peak plateau/ hump %
-    first = primaryRPM_array(i).deriv_max_index;
-    last = primaryRPM_array(i).max_index;
-    [plateau_grad, plateau_index] = min(smooth_deriv(first:last));
-    if plateau_grad < 100
-        primaryRPM_array.plat_bool = 1;
-        primaryRPM_array.plateau = smooth_sig(plateau_index);
-    end
+    [plateau_grad, plateau_index] = min(smooth_deriv(
 end
 
 
